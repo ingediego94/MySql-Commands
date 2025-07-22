@@ -4,9 +4,9 @@
 
         Ctrl + Alt + T
 
-2. Iniciammos como 'su' y escribimos la contraseña:
+2. Iniciammos como 'sudo su' y escribimos la contraseña:
 
-        su
+        sudo su
         password: ********
 
 3. Actualizamos paquetes:
@@ -45,6 +45,7 @@
 
         alter user 'root'@'localhost' identified with mysql_native_password by 'tuClaveDeseada';
 
+    En 'tuClaveDeseada' debes colocar una contraseña que tu desees.
     No olvidar esa clave.
 
 
