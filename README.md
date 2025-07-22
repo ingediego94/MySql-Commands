@@ -4,19 +4,28 @@
 
 Abrir MySql desde terminal:
 
-	    mysql -u root -p
+	mysql -u root -p
+
 	
 Crear una nueva base de datos:
 
-	    CREATE DATABASE bd_prueba;
+	CREATE DATABASE bd_prueba;
+
 
 Ver todas las BD creadas:
 
-	    SHOW DATABASES;
+	SHOW DATABASES;
+
+
+Mostrar todas las tablas de la BD:
+
+        SHOW TABLES;
+
 
 Usar una BD en específico:
 
         USE bd_prueba;
+
 
 Crear una nueva tabla:
 
@@ -66,12 +75,15 @@ Crear una nueva tabla ya con NOT NULL, AUTO_INCREMENT, UNIQUE, PK, FK y relació
                 FOREIGN KEY (alternativa) REFERENCES productos(id)
         );
 
+## Relacion de tablas:
 
 Como crear una relacion entre dos tablas luego de ya tener las tablas creadas y darle un nombre especifico a la relacion:
 
         ALTER TABLE usuarios
         ADD CONSTRAINT fk_usuarios_producto
         FOREIGN KEY (alternativa) REFERENCES productos(id);
+
+El nombre fk_... lleva primero la tabla donde se va a posicionar la FK. El primer parentesis tambien hace mención al campo de FK a esa primera tabla. En REFERENCES () va el id de la tabla con la PK.
 
 
 
