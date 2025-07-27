@@ -50,10 +50,21 @@ Agregar AUTO_INCREMENT a una tabla ya existente:
         MODIFY COLUMN id INT AUTO_INCREMENT;
 
 
+        ALTER TABLE genders
+        MODIFY COLUMN acronym VARCHAR(5);
+
+
 Insertar nuevos registros en la BD:
 
         INSERT INTO productos 
         VALUES(1, 'monitor gamer', 'bello monitor gamer');
+
+
+Modificar un registro ya hecho:
+
+        UPDATE genders
+        SET col_gender = 'Femenino'
+        WHERE id = 4;
         
 Ver todos los registros de la tabla:
 
@@ -74,6 +85,20 @@ Crear una nueva tabla ya con NOT NULL, AUTO_INCREMENT, UNIQUE, PK, FK y relació
                 PRIMARY KEY (id),
                 FOREIGN KEY (alternativa) REFERENCES productos(id)
         );
+
+
+
+Crear una tabla con campos de marca de tiempo de creación y modificación:
+
+        CREATE TABLE genders( 
+                id_gender INT PRIMARY KEY AUTO_INCREMENT, 
+                gender VARCHAR(15) UNIQUE NOT NULL, 
+                acronym VARCHAR(4) UNIQUE NOT NULL, 
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+                );
+
+
 
 ## Relacion de tablas:
 
@@ -100,7 +125,29 @@ Como eliminar la relacion entre dos tablas:
 
 
 ---
+Relacionar una tabla desde su creación (moodle):
+
+        CREATE TABLE empleados( 
+         id_empleado INT AUTO_INCREMENT PRIMARY KEY, 
+         nombre VARCHAR(100) NOT NULL, 
+         apellido VARCHAR(100) NOT NULL, 
+         id_tipo_documento INT, 
+         numero_de_documento VARCHAR(40) NOT NULL, 
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+
+                ON UPDATE CASCADE 
+                ON DELETE SET NULL 
+                REFERENCES tipos_de_documento(id_tipo_documento) 
+                FOREIGN KEY (id_tipo_documento)
+        );
+---
 ### Vaciar y eliminar:
+
+Eliminar un registro de una tabla:
+
+        DELETE FROM genders
+        WHERE id = 4;
 
 Eliminar una columna de la tabla:
 
@@ -147,4 +194,23 @@ Seleccionar columnas asignandole alias:
 
 
 
+### JOINS
+
+Hacer un join con tres tablas:
+
+        SELECT  p.id_patient AS id, 
+                p.name AS nombre, 
+                p.last_name AS apellido_1, 
+                p.last_name_2 AS apellido_2, 
+                p.born_date AS fecha_nac, 
+                g.id_gender AS genero,
+                bt.blood_type AS tipo_sangre,
+                rh.rh AS rh
+        FROM patients AS p
+        JOIN genders AS g
+                ON p.id_gender = g.id_gender
+        JOIN blood_type AS bt
+                ON p.id_blood_type = bt.id_blood_type
+        JOIN rh 
+                ON bt.id_rh = rh.id_rh;
 
