@@ -39,9 +39,22 @@ Ver el detalle de los campos de una tabla:
 
         DESCRIBE productos;
 
+
+Renombrar un campo o columna:
+
+        ALTER TABLE gender
+        RENAME COLUMN person_gender TO sex;
+
+
 Agregar un nuevo campo a una tabla ya existente. (tinyint es el bool):
         
         ALTER TABLE productos ADD disponible TINYINT;
+
+
+Agregar un campo de tipo booleano a una tabla existente, con un valor por defecto (TRUE):
+
+        ALTER TABLE productos 
+        ADD activo BOOLEAN DEFAULT TRUE;
 
 
 Agregar AUTO_INCREMENT a una tabla ya existente:
