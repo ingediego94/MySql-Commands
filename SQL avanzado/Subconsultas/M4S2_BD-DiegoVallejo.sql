@@ -305,3 +305,27 @@ WHERE i.final_grade > (
 GROUP BY s.id_student, s.name, s.lastname_1, s.lastname_2;
 
 
+-- Query which ones courses have more than 2 students registered:
+SELECT 
+	i.id_course,
+    c.course_name,
+    COUNT(i.id_student) AS 'Amount per course'
+FROM inscriptions AS i
+JOIN courses AS c
+	ON i.id_course = c.id_course
+GROUP BY i.id_course
+HAVING COUNT(i.id_student) > 2;
+
+
+-- ***********************************************************************
+-- Show careers' names with students from 2nd semester or superior.
+-- ***********************************************************************
+
+-- 
+SELECT i.* 
+FROM inscriptions;
+-- hacer la vista
+
+
+
+
