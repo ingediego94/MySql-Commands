@@ -6,7 +6,7 @@ import csv from 'csv-parser';
 
 // importamos la BD
 import db from './db.js';
-import { pipeline } from 'stream';
+import { pipeline } from 'stream'; // no usado pero no se, yo no soy nadie para juzgar.
 
 export const cargarCSV = (rutaCSV) => {
     fs.createReadStream(rutaCSV)
@@ -30,15 +30,13 @@ export const cargarCSV = (rutaCSV) => {
                 } else{
                     console.log("Inserción de datos correctamente.");
                 }
-
                 
             }
         )
 
-        .on('end', () => {
-            console.log("La sesion se ha cerrado exitosamente");
-        });
-
     })       
 
+    .on('end', () => {
+        console.log("La sesion se ha cerrado exitosamente");
+    });
 } 
