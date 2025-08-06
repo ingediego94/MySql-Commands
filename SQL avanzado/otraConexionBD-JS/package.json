@@ -1,0 +1,20 @@
+{
+  "name": "otraconexionbd",
+  "version": "1.0.0",
+  "description": "INSTALAR:",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.3"
+  },
+  "devDependencies": {}
+}
