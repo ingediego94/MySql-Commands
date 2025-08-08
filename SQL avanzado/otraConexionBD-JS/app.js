@@ -1,6 +1,9 @@
 import {cargarCSV} from './employeeService.js';
 import db from './db.js';
 import express from 'express';
+import { uploadCSVBack } from './helpers.js';
+const {uploadCSVBack} = require('./helpers.js');
+
 
 const app = express();
 app.use(express.json());
@@ -42,7 +45,19 @@ app.post('/employee', (req, res) => {
     
 });
 
+
+
 // Conexion al puerto
 app.listen(3000, ()=>{
     console.log("Puerto corriendo");
 });
+
+
+// -----------------------------------------------
+// index.js
+//endpoint uploadData
+app.post('/uploadCSV', (req, res)=>{
+    uploadCSVBack();
+    console.log("Funciono");
+    res.json({result: "db actualizada"});
+})
